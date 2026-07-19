@@ -1,0 +1,13 @@
+streamlit
+torch
+torchvision
+numpy
+pandas
+matplotlib
+Pillow
+opencv-python-headless
+scikit-learn
+scipy
+grad-cam
+groq
+python-dotenv
