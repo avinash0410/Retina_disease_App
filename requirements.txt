@@ -1,4 +1,7 @@
 streamlit
+tensorflow==2.17.1
+huggingface_hub
+
 torch
 torchvision
 numpy
@@ -11,3 +14,5 @@ scipy
 grad-cam
 groq
 python-dotenv
+requests
+h5py
