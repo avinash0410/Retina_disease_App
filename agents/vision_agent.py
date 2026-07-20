@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 load_dotenv()
 import streamlit as st
 
-from config import (
+from config_new import (
     IMAGE_SIZE,
     CLASS_NAMES,
     CLINICAL_NOTES,
