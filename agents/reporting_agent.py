@@ -29,8 +29,10 @@ confusion_df = pd.read_csv(CONFUSION_PATH) if CONFUSION_PATH.exists() else None
 
 
 load_dotenv()  
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))    
+#client = Groq(api_key=os.getenv("GROQ_API_KEY"))    
+import streamlit as st
 
+client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 def ask_groq(prompt):
     response = client.chat.completions.create(
