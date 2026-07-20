@@ -15,15 +15,6 @@ import matplotlib.pyplot as plt
 load_dotenv()
 import streamlit as st
 
-@st.cache_resource
-def load_model():
-    model = build_efficientnetv2s_model()
-
-    model.load_weights(WEIGHTS_PATH)
-
-    return model
-
-model = load_model()
 from config import (
     MODELS_DIR,
     IMAGE_SIZE,
@@ -124,19 +115,21 @@ WEIGHTS_PATH = hf_hub_download(
     filename="efficientnetv2s_finetuned_best.weights.h5",
 )
 
+
+import streamlit as st
+
+@st.cache_resource
+def load_model():
+    model = build_efficientnetv2s_model()
+    model.load_weights(WEIGHTS_PATH)
+    return model
+
 print("=" * 60)
-print("Building EfficientNetV2S...")
-model = build_efficientnetv2s_model()
-
-print("Loading weights...")
-model.load_weights(WEIGHTS_PATH)
-
-print("Weights loaded successfully!")
-print("=" * 60)
-
-
-
+print("Loading EfficientNetV2S...")
+model = load_model()
 backbone = model.get_layer("efficientnetv2-s")
+print("Model loaded successfully!")
+print("=" * 60)
 
 def find_last_conv_layer(backbone_model):
     for layer in reversed(backbone_model.layers):
