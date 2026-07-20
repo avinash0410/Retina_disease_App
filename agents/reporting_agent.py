@@ -23,10 +23,10 @@ from groq import Groq
 #METRICS_PATH = REPORTS_DIR / "finetuned_test_classification_metrics.csv"
 #CONFUSION_PATH = REPORTS_DIR / "top_confusion_pairs.csv"
 
-summary_text = SUMMARY_PATH.read_text(encoding="utf-8") if SUMMARY_PATH.exists() else ""
-comparison_df = pd.read_csv(COMPARISON_PATH) if COMPARISON_PATH.exists() else None
-metrics_df = pd.read_csv(METRICS_PATH) if METRICS_PATH.exists() else None
-confusion_df = pd.read_csv(CONFUSION_PATH) if CONFUSION_PATH.exists() else None
+s#ummary_text = SUMMARY_PATH.read_text(encoding="utf-8") if SUMMARY_PATH.exists() else ""
+#comparison_df = pd.read_csv(COMPARISON_PATH) if COMPARISON_PATH.exists() else None
+#metrics_df = pd.read_csv(METRICS_PATH) if METRICS_PATH.exists() else None
+#confusion_df = pd.read_csv(CONFUSION_PATH) if CONFUSION_PATH.exists() else None
 
 
 load_dotenv()  
