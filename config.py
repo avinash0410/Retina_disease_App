@@ -2,8 +2,8 @@ from pathlib import Path
 import os
 
 
-MODELS_DIR = Path(r"C:/Users/vadla/Retina_App/MODELS_DIR")
-REPORTS_DIR = Path(r"C:/Users/vadla/Retina_App/REPORTS_DIR")
+#MODELS_DIR = Path(r"C:/Users/vadla/Retina_App/MODELS_DIR")
+#REPORTS_DIR = Path(r"C:/Users/vadla/Retina_App/REPORTS_DIR")
 
 IMAGE_SIZE = (384, 384)
 

@@ -15,13 +15,13 @@ import pandas as pd
 from dotenv import load_dotenv
 from groq import Groq
 
-from config import REPORTS_DIR
+#from config import REPORTS_DIR
 
 
-SUMMARY_PATH = REPORTS_DIR / "final_summary.txt"
-COMPARISON_PATH = REPORTS_DIR / "baseline_vs_finetuned_comparison.csv"
-METRICS_PATH = REPORTS_DIR / "finetuned_test_classification_metrics.csv"
-CONFUSION_PATH = REPORTS_DIR / "top_confusion_pairs.csv"
+#SUMMARY_PATH = REPORTS_DIR / "final_summary.txt"
+#COMPARISON_PATH = REPORTS_DIR / "baseline_vs_finetuned_comparison.csv"
+#METRICS_PATH = REPORTS_DIR / "finetuned_test_classification_metrics.csv"
+#CONFUSION_PATH = REPORTS_DIR / "top_confusion_pairs.csv"
 
 summary_text = SUMMARY_PATH.read_text(encoding="utf-8") if SUMMARY_PATH.exists() else ""
 comparison_df = pd.read_csv(COMPARISON_PATH) if COMPARISON_PATH.exists() else None
