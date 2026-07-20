@@ -1,0 +1,8 @@
+Retinal OCT Disease Classification Project
+
+This project uses an EfficientNetV2S deep learning model to classify retinal OCT images into eight disease categories:
+AMD, CNV, CSR, DME, DR, DRUSEN, MH, and NORMAL.
+
+The model was fine-tuned on the Retinal OCT-C8 dataset and integrates Explainable AI using Grad-CAM, Grad-CAM++, and Eigen-CAM to highlight regions that influenced each prediction.
+
+This application is intended as a research prototype for educational purposes and is not a medical diagnostic tool.
