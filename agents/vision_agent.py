@@ -4,14 +4,26 @@ vision_agent.py
 Loads the fine-tuned EfficientNetV2S model once and exposes
 predict_and_explain().
 """
+import tensorflow as tf
 
 from pathlib import Path
 from dotenv import load_dotenv
 import numpy as np
-import tensorflow as tf
+
 from PIL import Image
 import matplotlib.pyplot as plt
 load_dotenv()
+import streamlit as st
+
+@st.cache_resource
+def load_model():
+    model = build_efficientnetv2s_model()
+
+    model.load_weights(WEIGHTS_PATH)
+
+    return model
+
+model = load_model()
 from config import (
     MODELS_DIR,
     IMAGE_SIZE,
@@ -105,45 +117,41 @@ def build_efficientnetv2s_model():
 
 
 
-WEIGHTS_PATH = Path(
-    r"C:\Users\vadla\Downloads\efficientnetv2s_finetuned_best.weights.h5"
-)
+from huggingface_hub import hf_hub_download
 
-if not WEIGHTS_PATH.exists():
-    raise FileNotFoundError(
-        f"Weights file not found:\n{WEIGHTS_PATH}"
-    )
+WEIGHTS_PATH = hf_hub_download(
+    repo_id="Avinash0410/retina_APP",
+    filename="efficientnetv2s_finetuned_best.weights.h5",
+)
 
 print("=" * 60)
 print("Building EfficientNetV2S...")
 model = build_efficientnetv2s_model()
 
 print("Loading weights...")
-model.load_weights(str(WEIGHTS_PATH))
+model.load_weights(WEIGHTS_PATH)
 
 print("Weights loaded successfully!")
 print("=" * 60)
 
+
+
 backbone = model.get_layer("efficientnetv2-s")
 
-def find_last_4d_layer(backbone_model):
+def find_last_conv_layer(backbone_model):
     for layer in reversed(backbone_model.layers):
-        try:
-            if len(layer.output.shape) == 4:
-                return layer.name
-        except Exception:
-            pass
-    raise ValueError("No 4D layer found in backbone")
+        if isinstance(layer, tf.keras.layers.Conv2D):
+            return layer.name
+    raise ValueError("No Conv2D layer found in backbone")
 
 
-last_conv_layer_name = find_last_4d_layer(backbone)
+last_conv_layer_name = find_last_conv_layer(backbone)
 last_conv_layer = backbone.get_layer(last_conv_layer_name)
 
 feature_extractor = tf.keras.Model(
     inputs=backbone.input,
-    outputs=last_conv_layer.output,
+    outputs=backbone.output,
 )
-
 classifier_input = tf.keras.Input(shape=last_conv_layer.output.shape[1:])
 x = model.get_layer("gap")(classifier_input)
 x = model.get_layer("bn")(x, training=False)

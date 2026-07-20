@@ -10,6 +10,7 @@ never given free rein to invent numbers.
 
 import os
 
+
 import pandas as pd
 from dotenv import load_dotenv
 from groq import Groq
@@ -380,7 +381,7 @@ Important instructions:
     
     prediction_info = ""
 
-    prediction_info = ""
+
 
     if prediction_context:
 
