@@ -9,7 +9,13 @@ st.write("Secrets available:", list(st.secrets.keys()))
 st.write("Has GROQ:", "GROQ_API_KEY" in st.secrets)
 from agents import orchestrator_agent
 
-
+try:
+    result = orchestrator_agent.handle_request(uploaded_image)
+    st.write(result)
+except Exception as e:
+    import traceback
+    st.error(str(e))
+    st.code(traceback.format_exc())
 
 st.set_page_config(
     page_title="Retinal OCT Assistant",
