@@ -14,8 +14,7 @@ import os
 import pandas as pd
 from dotenv import load_dotenv
 from groq import Groq
-import REPORTS_DIR
-#from config import REPORTS_DIR
+from config_new import REPORTS_DIR
 
 
 SUMMARY_PATH = REPORTS_DIR / "final_summary.txt"
