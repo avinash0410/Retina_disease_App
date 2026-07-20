@@ -3,7 +3,10 @@ import tempfile
 
 import streamlit as st
 from PIL import Image
+import streamlit as st
 
+st.write("Secrets available:", list(st.secrets.keys()))
+st.write("Has GROQ:", "GROQ_API_KEY" in st.secrets)
 from agents import orchestrator_agent
 
 
