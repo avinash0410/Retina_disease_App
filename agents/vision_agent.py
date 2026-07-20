@@ -16,7 +16,6 @@ load_dotenv()
 import streamlit as st
 
 from config import (
-
     IMAGE_SIZE,
     CLASS_NAMES,
     CLINICAL_NOTES,
